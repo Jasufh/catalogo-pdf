@@ -18,6 +18,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/catalogo', [CatalogoController::class, 'index'])->name('catalogo.index');
+    Route::get('/catalogo-crear', [CatalogoController::class, 'create'])->name('catalogo.create');
+    
+
     Route::get('/generar-pdf', [CatalogoController::class, 'report'])->name('generar.pdf');
 });
 

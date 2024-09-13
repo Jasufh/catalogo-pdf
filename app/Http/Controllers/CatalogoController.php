@@ -20,7 +20,7 @@ class CatalogoController extends Controller
      */
     public function create()
     {
-        //
+        return view('catalogo.create');
     }
 
     /**

@@ -17,69 +17,88 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
         }
 
-        table {
+        .header {
+            margin-top: 20px;
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 200px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
         }
 
-        th,
-        td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        .marca {
+            width: 80px;
         }
 
-        th {
-            background-color: #4CAF50;
-            color: white;
+        .modeloMain {
+            width: 100%;
+            text-align: center;
         }
 
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .modeloMain img {
+            width: 300px;
         }
 
-        tr:hover {
-            background-color: #ddd;
+        .modeloSec {
+            width: 100%; 
+            border-collapse: collapse; /* Elimina el espacio entre las celdas de la tabla */
+            text-align: center; /* Centra el contenido en las celdas */
+        }
+
+        .modeloSec td {
+            padding: 40px; 
+        }
+
+        .modeloSec img {
+            width: 90px; 
+            height: auto;
+        }
+
+        .modelo {
+            position: absolute; /* Usa posicionamiento absoluto */
+            top: 170px; /* Distancia desde el borde superior del contenedor */
+            left: 550px; /* Distancia desde el borde izquierdo del contenedor */
+            width: 200px; /* Ancho del div */
+            height: auto; /* Altura automática basada en el contenido */
+            text-align: center;
+            font-size: 25px;
         }
     </style>
 
 </head>
 
 <body>
-    <table>
-        <thead>
+    <div class="paginaCatalogo">
+        <table class="header">
+            <th><img class="marca" src="{{ public_path('img/xboxblack.webp') }}" alt=""></th>
+            <th>Alguna Frase</th>
+        </table>
+        <div class="modelo">
+            <p>MODELO</p>
+            <p>SWLK-350</p>
+        </div>
+
+        <div class="modeloMain">
+            <img src="{{ public_path('img/xboxblack.webp') }}" alt="">
+        </div>
+
+        <table class="modeloSec">
             <tr>
-                <th>Nombre</th>
-                <th>Edad</th>
-                <th>Ciudad</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Juan Pérez</td>
-                <td>28</td>
-                <td>Madrid</td>
+                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
+                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
+                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
             </tr>
             <tr>
-                <td>Laura Gómez</td>
-                <td>34</td>
-                <td>Barcelona</td>
+                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
+                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
+                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
             </tr>
-            <tr>
-                <td>Pedro Fernández</td>
-                <td>22</td>
-                <td>Valencia</td>
-            </tr>
-        </tbody>
-    </table>
+        </table>
+    </div>
+    
+
+    
+
+    
 </body>
 
 </html>
