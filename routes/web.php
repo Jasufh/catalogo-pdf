@@ -18,8 +18,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('/catalogo', [CatalogoController::class, 'index'])->name('catalogo.index');
-    Route::get('/catalogo-crear', [CatalogoController::class, 'create'])->name('catalogo.create');
-    
+    Route::get('/catalogo/{id}', [CatalogoController::class, 'create'])->name('catalogo.create');
+   
+
+
+    Route::post('/catalogo-crear/store', [CatalogoController::class, 'store'])->name('catalogo.store');
+
+
+    Route::post('/catalogo-aregar/modelo', [CatalogoController::class, 'agregarModelo'])->name('catalogo.agregarModelo');
+
 
     Route::get('/generar-pdf', [CatalogoController::class, 'report'])->name('generar.pdf');
 });

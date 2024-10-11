@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Catalogo;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -12,55 +13,42 @@ class CatalogoController extends Controller
      */
     public function index()
     {
-        return view('pdf.catalogo');
+        $catalogos = Catalogo::with('productos')->get();
+
+        return view('dashboard', compact('catalogos'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($id)
     {
-        return view('catalogo.create');
+        $catalogo = Catalogo::find($id);
+
+        return view('catalogo.create', compact('catalogo'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+        $request->validate([
+            'nombre' => 'required'
+        ]);
+
+        $catalogo = new Catalogo();
+        $catalogo->nombre = $request->nombre;
+        $catalogo->save();
+
+        return redirect()->route('catalogo.create', $catalogo->id);
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    public function agregarModelo(Request $request){
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $request->validate([
+            "modelo" => 'required'
+        ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 
     public function report()
@@ -69,4 +57,6 @@ class CatalogoController extends Controller
 
         return $pdf->stream('catalogo_pdf.pdf');
     }
+
+
 }

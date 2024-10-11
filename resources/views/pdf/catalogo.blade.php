@@ -35,30 +35,38 @@
         }
 
         .modeloMain img {
-            width: 300px;
+            width: 500px;
+            height: 500px;
         }
 
         .modeloSec {
-            width: 100%; 
-            border-collapse: collapse; /* Elimina el espacio entre las celdas de la tabla */
-            text-align: center; /* Centra el contenido en las celdas */
+            width: 100%;
+            border-collapse: collapse;
+            /* Elimina el espacio entre las celdas de la tabla */
+            text-align: center;
+            /* Centra el contenido en las celdas */
         }
 
         .modeloSec td {
-            padding: 40px; 
+            padding: 40px;
         }
 
         .modeloSec img {
-            width: 90px; 
+            width: 90px;
             height: auto;
         }
 
         .modelo {
-            position: absolute; /* Usa posicionamiento absoluto */
-            top: 170px; /* Distancia desde el borde superior del contenedor */
-            left: 550px; /* Distancia desde el borde izquierdo del contenedor */
-            width: 200px; /* Ancho del div */
-            height: auto; /* Altura automática basada en el contenido */
+            position: absolute;
+            /* Usa posicionamiento absoluto */
+            top: 170px;
+            /* Distancia desde el borde superior del contenedor */
+            left: 550px;
+            /* Distancia desde el borde izquierdo del contenedor */
+            width: 200px;
+            /* Ancho del div */
+            height: auto;
+            /* Altura automática basada en el contenido */
             text-align: center;
             font-size: 25px;
         }
@@ -67,38 +75,41 @@
 </head>
 
 <body>
-    <div class="paginaCatalogo">
-        <table class="header">
-            <th><img class="marca" src="{{ public_path('img/xboxblack.webp') }}" alt=""></th>
-            <th>Alguna Frase</th>
-        </table>
-        <div class="modelo">
-            <p>MODELO</p>
-            <p>SWLK-350</p>
+    {{-- ¡¡CAMBIAR IMAGENES POR EL DE LOS MODELOS CUANDO SEAN AGREGADOS!! --}}
+    @foreach ($productos as $index => $producto)
+        <div class="paginaCatalogo">
+            <table class="header">
+                <th><img class="marca" src="{{ public_path('storage/img/pp.jpg') }}" alt=""></th>
+                <th>Alguna Frase</th>
+            </table>
+            <div class="modelo">
+                <p>{{ $producto->modelo }}</p>
+                <p>SWLK-350</p>
+            </div>
+
+            <div class="modeloMain">
+                <img src="{{ public_path('storage/img/pp.jpg') }}" alt="">
+            </div>
+
+            <table class="modeloSec">
+                <tr>
+                    <td><img src="{{ public_path('storage/img/pp.jpg') }}" alt=""></td>
+                    <td><img src="{{ public_path('storage/img/pp.jpg') }}" alt=""></td>
+                    <td><img src="{{ public_path('storage/img/pp.jpg') }}" alt=""></td>
+                </tr>
+                <tr>
+                    <td><img src="{{ public_path('storage/img/pp.jpg') }}" alt=""></td>
+                    <td><img src="{{ public_path('storage/img/pp.jpg') }}" alt=""></td>
+                    <td><img src="{{ public_path('storage/img/pp.jpg') }}" alt=""></td>
+                </tr>
+            </table>
         </div>
 
-        <div class="modeloMain">
-            <img src="{{ public_path('img/xboxblack.webp') }}" alt="">
-        </div>
-
-        <table class="modeloSec">
-            <tr>
-                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
-                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
-                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
-            </tr>
-            <tr>
-                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
-                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
-                <td><img src="{{ public_path('img/xboxblack.webp') }}" alt=""></td>
-            </tr>
-        </table>
-    </div>
-    
-
-    
-
-    
+        @if ($index < count($productos) - 1)
+            <div style="page-break-after: always;"></div>
+        @endif
+    @endforeach
 </body>
+
 
 </html>

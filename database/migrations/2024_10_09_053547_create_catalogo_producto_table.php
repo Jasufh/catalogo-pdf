@@ -11,16 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('catalogo', function (Blueprint $table) {
+        Schema::create('catalogo_producto', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('producto_id')->nullable();
-            $table->string('nombre');
-            
+            $table->unsignedBigInteger('catalogo_id');
+            $table->unsignedBigInteger('producto_id');
             $table->timestamps();
 
+            $table->foreign('catalogo_id')->references('id')->on('catalogo')->onDelete('cascade');
             $table->foreign('producto_id')->references('id')->on('producto')->onDelete('cascade');
 
+            // Aseguramos que la relación es única
+            $table->unique(['catalogo_id', 'producto_id']);
         });
+
     }
 
     /**
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('catalogo');
+        Schema::dropIfExists('catalogo_producto');
     }
 };
